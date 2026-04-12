@@ -1,0 +1,2 @@
+CompileFlags:
+  Remove: [-f*, -m*]  # Removes GCC-specific optimization/machine flags
