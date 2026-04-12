@@ -2,7 +2,7 @@
 
 Model-View-ViewModel (MVVM) support library for modern C++.
 
-This library is header-only, and it is recommended to use CMake 3.30 or .
+This library is header-only, and it is recommended to use CMake.
 
 ## Requirements
 
