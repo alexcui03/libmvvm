@@ -16,7 +16,7 @@
 namespace mvvm {
 
 template <class Object>
-class ObservableObject: public Object {
+class ObservableObject {
     struct Impl; // Proxy object for getter and setter, implemented by std::meta::define_aggregate().
 
 #pragma GCC diagnostic push
@@ -49,11 +49,12 @@ class ObservableObject: public Object {
     }
 #pragma GCC diagnostic pop
 
+    Object object;
     Impl impl;
 
 public:
     template <class ...Args>
-    ObservableObject(Args &&...args): Object(std::forward<Args>(args)...) {
+    ObservableObject(Args &&...args): object(std::forward<Args>(args)...) {
         // @todo should be replaced by member initialization list.
         template for (
             constexpr auto property :
@@ -61,7 +62,7 @@ public:
                 std::meta::nonstatic_data_members_of(^^Impl, std::meta::access_context::current())
             ))
         ) {
-            impl.[:property:].object = static_cast<Object *>(this);
+            impl.[:property:].object = &object;
         }
     }
 
