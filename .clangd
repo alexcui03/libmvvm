@@ -1,2 +1,2 @@
 CompileFlags:
-  Remove: [-f*, -m*]  # Removes GCC-specific optimization/machine flags
+  Remove: [-freflection]  # Removes GCC-specific optimization/machine flags
