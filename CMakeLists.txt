@@ -11,5 +11,9 @@ target_compile_options(mvvm INTERFACE -Wall -Wextra -O2 -freflection)
 target_compile_features(mvvm INTERFACE cxx_std_26)
 target_include_directories(mvvm INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+# Tests
+enable_testing()
+add_subdirectory(test)
+
 # Examples
 add_subdirectory(example)
