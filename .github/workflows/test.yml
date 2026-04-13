@@ -1,0 +1,32 @@
+name: Test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup cmake
+        uses: jwlawson/actions-setup-cmake@v2
+        with:
+          cmake-version: '3.30.x'
+
+      - name: Install GCC 16
+        run: |
+          sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+          sudo apt-get update
+          sudo apt install -y gcc-16 g++-16
+          echo "CC=gcc-16" >> $GITHUB_ENV
+          echo "CXX=g++-16" >> $GITHUB_ENV
+
+      - run: cmake -B build
+
+      - run: cmake --build build
+
+      - run: ctest --test-dir build --output-on-failure
