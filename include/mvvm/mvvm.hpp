@@ -7,6 +7,7 @@
 
 #include "observable_object.hpp"
 #include "observable_property.hpp"
+#include "relay_command.hpp"
 
 namespace mvvm {
 
