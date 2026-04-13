@@ -25,11 +25,8 @@ jobs:
           echo "CC=gcc-16" >> $GITHUB_ENV
           echo "CXX=g++-16" >> $GITHUB_ENV
 
-      - run: |
-          mkdir build
-          cd build
-          cmake ..
+      - run: cmake -B build
 
-      - run: cmake --build .
+      - run: cmake --build build
 
       - run: ctest
